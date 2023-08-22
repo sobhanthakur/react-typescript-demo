@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import "./App.css";
-import InputField from "./components/InputField";
-import TodoList from "./components/TodoList";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Todo } from "./models/models";
+import React, { useState } from 'react';
+import './App.css';
+import InputField from './components/InputField';
+import TodoList from './components/TodoList';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { Todo } from './models/models';
+const apiKey = process.env.REACT_APP_API_KEY;
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const App: React.FC = () => {
-  const [todo, setTodo] = useState<string>("");
+  const [todo, setTodo] = useState<string>('');
   const [todos, setTodos] = useState<Array<Todo>>([]);
   const [CompletedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
 
@@ -15,7 +17,7 @@ const App: React.FC = () => {
 
     if (todo) {
       setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
-      setTodo("");
+      setTodo('');
     }
   };
 
@@ -39,7 +41,7 @@ const App: React.FC = () => {
     let active = todos;
     let complete = CompletedTodos;
     // Source Logic
-    if (source.droppableId === "TodosList") {
+    if (source.droppableId === 'TodosList') {
       add = active[source.index];
       active.splice(source.index, 1);
     } else {
@@ -48,7 +50,7 @@ const App: React.FC = () => {
     }
 
     // Destination Logic
-    if (destination.droppableId === "TodosList") {
+    if (destination.droppableId === 'TodosList') {
       active.splice(destination.index, 0, add);
     } else {
       complete.splice(destination.index, 0, add);
@@ -61,6 +63,8 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
+        <p>API Key: {apiKey}</p>
+        <p>Base URL: {baseUrl}</p>
         <span className="heading">Taskify</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
