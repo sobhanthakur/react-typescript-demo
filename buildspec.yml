@@ -3,20 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 16
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+
   pre_build:
     commands:
-      - cd my-app
-      - echo Installing source NPM dependencies...
-      - npm install
+      - echo "Running pre-build tasks..."
+
   build:
     commands:
-      - echo Build started on 'date'
+      - echo "Building the React app..."
       - npm run build
 
 artifacts:
   files:
     - '**/*'
-    #- "my-app/build/**/*"
-  base-directory: 'my-app/build'
-  #discard-paths: yes
+  discard-paths: yes
