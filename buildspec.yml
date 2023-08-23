@@ -17,6 +17,6 @@ phases:
 artifacts:
   files:
     - '**/*'
-    # - "my-app/build/**/*"
+    - "build/**/*"
   base-directory: 'build'
   #discard-paths: yes
