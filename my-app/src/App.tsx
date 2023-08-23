@@ -4,8 +4,6 @@ import InputField from './components/InputField';
 import TodoList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { Todo } from './models/models';
-const apiKey = process.env.REACT_APP_API_KEY;
-const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>('');
@@ -63,8 +61,6 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <p>API Key: {apiKey}</p>
-        <p>Base URL: {baseUrl}</p>
         <span className="heading">Taskify</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
