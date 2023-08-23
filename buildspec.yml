@@ -3,9 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
-    commands:
-      - n 16
+      nodejs: 18
   pre_build:
     commands:
       # - cd my-app
